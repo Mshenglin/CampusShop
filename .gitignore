@@ -1,0 +1,12 @@
+# Maven #
+target/
+# IDEA #
+.idea/
+*.iml
+out/
+### Java template
+*.class
+# Package Files #
+*.jar
+*.war
+*.ear
