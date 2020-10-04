@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xu.dao.AreaDao">
+    <select id="queryArea"  resultMap="areaMap">
+        select * from  tb_area
+    </select>
+    <resultMap id="areaMap" type="com.xu.entity.Area">
+        <id column="area_id"  property="areaId" />
+        <result column="area_name"  property="areaName" />
+        <result column="priority"  property="priority" />
+        <result column="create_time"  property="createTime" />
+        <result column="last_edit_time"  property="lastEditTime" />
+    </resultMap>
+</mapper>
