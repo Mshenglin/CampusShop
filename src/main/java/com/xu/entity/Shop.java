@@ -31,7 +31,7 @@ public class Shop {
 	 * 店铺地址
 	 */
 	private String shopAddr;
-	 /**
+	/**
 	 * 店铺联系方式
 	 */
 	private String phone;
@@ -74,11 +74,11 @@ public class Shop {
 	/**
 	 * 店铺创建人
 	 */
-	private ShopCategory shopCategory;
+	private PersonInfo owner;
 	/**
 	 * 类别
 	 */
-	private ShopCategory parentCategory;
+	private ShopCategory shopCategory;
 
 	public Long getShopId() {
 		return shopId;
@@ -201,12 +201,12 @@ public class Shop {
 		this.area = area;
 	}
 
-	public ShopCategory getShopCategory() {
-		return shopCategory;
+	public PersonInfo getOwner() {
+		return owner;
 	}
 
-	public void setShopCategory(ShopCategory shopCategory) {
-		this.shopCategory = shopCategory;
+	public void setOwner(PersonInfo owner) {
+		this.owner = owner;
 	}
 
 	public String getAdvice() {
@@ -217,12 +217,11 @@ public class Shop {
 		this.advice = advice;
 	}
 
-	public ShopCategory getParentCategory() {
-		return parentCategory;
+	public ShopCategory getShopCategory() {
+		return shopCategory;
 	}
 
-	public void setParentCategory(ShopCategory parentCategory) {
-		this.parentCategory = parentCategory;
+	public void setShopCategory(ShopCategory shopCategory) {
+		this.shopCategory = shopCategory;
 	}
-
 }

@@ -12,4 +12,11 @@ public interface ShopDao {
      * @return 状态值
      */
     int insertShop(Shop shop);
+
+    /**
+     * 更新商铺
+     * @param shop
+     * @return
+     */
+    int updateShop(Shop shop);
 }
