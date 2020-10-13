@@ -8,12 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class ServiceTest extends BeseTest {
+public class AreaServiceTest extends BeseTest {
     @Autowired
     private AreaService areaService;
     @Test
     public void testGetAreaList(){
         List<Area> list = areaService.getAreaList();
         System.out.println(list);
+    }
+    @Test
+    public void SystemTest(){
+        System.out.println(System.getProperty("os.name"));
     }
 }
