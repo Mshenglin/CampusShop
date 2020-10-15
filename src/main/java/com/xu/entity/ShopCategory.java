@@ -3,6 +3,7 @@ package com.xu.entity;
 import java.util.Date;
 
 /**
+ * 描述店铺类别
  * @author 马生林
  */
 public class ShopCategory {
@@ -37,7 +38,7 @@ public class ShopCategory {
 	/**
 	 *店铺类别上一级id
 	 */
-	private Long parentId;
+	private ShopCategory parent;
 
 	public Long getShopCategoryId() {
 		return shopCategoryId;
@@ -95,12 +96,12 @@ public class ShopCategory {
 		this.lastEditTime = lastEditTime;
 	}
 
-	public Long getParentId() {
-		return parentId;
+	public ShopCategory getParent() {
+		return parent;
 	}
 
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
+	public void setParent(ShopCategory parent) {
+		this.parent = parent;
 	}
 
 }

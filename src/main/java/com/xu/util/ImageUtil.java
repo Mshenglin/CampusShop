@@ -4,6 +4,7 @@ import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 import net.coobird.thumbnailator.name.Rename;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -34,7 +35,7 @@ public class ImageUtil {
      * @param targetAddr 图片存储路径
      * @return 文件的绝对路径
      */
- public static String generateThumbnail(File thumbnail, String targetAddr) {
+ public static String generateThumbnail(CommonsMultipartFile thumbnail, String targetAddr) {
      //文件的随即名
      String realFileName = getRandomFileName();
      // 获取文件扩展名
@@ -56,7 +57,7 @@ public class ImageUtil {
              System.out.println(basePath);
          }
          String watermark=basePath+"watermark.jpg";
-         Thumbnails.of(thumbnail).size(1280, 1024)
+         Thumbnails.of(thumbnail.getInputStream()).size(1280, 1024)
                  .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(watermark)),0.5f)
                  .outputQuality(0.8f).toFile(dest);
      }
@@ -85,7 +86,7 @@ public class ImageUtil {
      * @param thumbnail 用户传入的文件
      * @return
      */
-    private static String getFileExtension(File thumbnail) {
+    private static String getFileExtension(CommonsMultipartFile thumbnail) {
         //客户端传入的原始名称
         String thumbnailName = thumbnail.getName();
         return  thumbnailName.substring(thumbnailName.lastIndexOf('.'));

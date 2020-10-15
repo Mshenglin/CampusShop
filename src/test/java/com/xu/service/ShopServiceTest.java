@@ -7,24 +7,16 @@ import com.xu.entity.PersonInfo;
 import com.xu.entity.Shop;
 import com.xu.entity.ShopCategory;
 import com.xu.services.ShopService;
-import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.geometry.Positions;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.web.multipart.MultipartFile;
-import sun.misc.IOUtils;
-
-import javax.imageio.ImageIO;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Date;
 
 public class ShopServiceTest extends BeseTest {
     @Autowired
     ShopService shopService;
     @Test
+
     public  void TestAddShop(){
         Shop shop = new Shop();
         PersonInfo owner = new PersonInfo();
@@ -44,9 +36,11 @@ public class ShopServiceTest extends BeseTest {
         shop.setPriority(1);
         shop.setCreateTime(new Date());
         shop.setAdvice("审核中");
+        /**
         String filepath="D:\\OIP.jpg";
         File shopImg=new File(filepath);
         ShopExecution addShop = shopService.addShop(shop, shopImg);
         System.out.println(addShop.toString());
+         */
     }
 }

@@ -4,6 +4,7 @@ import com.xu.dto.ShopExecution;
 import com.xu.exceptions.ShopOperationException;
 import com.xu.entity.Shop;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.File;
 
@@ -19,5 +20,5 @@ public interface ShopService {
      * @return 店铺状态
      * @throws ShopOperationException
      */
-    ShopExecution addShop(Shop shop, File shopImg) throws ShopOperationException;
+    ShopExecution addShop(Shop shop, CommonsMultipartFile shopImg) throws ShopOperationException;
 }

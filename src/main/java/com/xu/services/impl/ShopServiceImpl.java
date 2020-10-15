@@ -12,6 +12,7 @@ import com.xu.util.PathUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.beans.Transient;
 import java.io.File;
@@ -29,7 +30,7 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     @Transient
-    public ShopExecution addShop(Shop shop, File shopImg) throws ShopOperationException {
+    public ShopExecution addShop(Shop shop, CommonsMultipartFile shopImg) throws ShopOperationException {
         //店铺的空值判断
         if (shop == null) {
             return new ShopExecution(ShopStateEnum.NULL_SHOP_INFO);
@@ -71,7 +72,7 @@ public class ShopServiceImpl implements ShopService {
         }
     }
 
-    private void addImage(Shop shop, File shopImg) {
+    private void addImage(Shop shop, CommonsMultipartFile shopImg) {
         String dest = PathUtil.getShopImagePath(shop.getShopId());
         System.out.println(dest);
         String shopImgAddr = ImageUtil.generateThumbnail(shopImg, dest);
