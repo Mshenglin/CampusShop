@@ -39,8 +39,10 @@ public class ImageUtil {
      //文件的随即名
      String realFileName = getRandomFileName();
      // 获取文件扩展名
+     System.out.println("realFileName"+realFileName);
      String extension = getFileExtension(thumbnail);
      //如果文件夹不存在，创建文件夹
+     System.out.println("extension"+extension);
      makeDirPath(targetAddr);
      //文件夹存在，将传入的文件存放在对应的文件夹下
      String relativeAddr=targetAddr+realFileName+extension;
@@ -54,7 +56,7 @@ public class ImageUtil {
          String os=System.getProperty("os.name");
          if((os.toLowerCase().startsWith("win"))&&basePath.charAt(0)=='/'){
              basePath=basePath.substring(1);
-             System.out.println(basePath);
+             System.out.println("basePath"+basePath);
          }
          String watermark=basePath+"watermark.jpg";
          Thumbnails.of(thumbnail.getInputStream()).size(1280, 1024)
@@ -88,7 +90,7 @@ public class ImageUtil {
      */
     private static String getFileExtension(CommonsMultipartFile thumbnail) {
         //客户端传入的原始名称
-        String thumbnailName = thumbnail.getName();
+        String thumbnailName = thumbnail.getOriginalFilename();
         return  thumbnailName.substring(thumbnailName.lastIndexOf('.'));
     }
 

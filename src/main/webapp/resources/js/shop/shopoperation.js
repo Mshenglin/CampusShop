@@ -7,13 +7,13 @@ $(function() {
 	// 如果shopId不为空，则为修改
 	var isEdit = shopId ? true : false;
 	// 初始化店铺信息：店铺分类和区域信息列表，用于注册店铺
-	var initUrl = "/o2o/shopadmin/getshopinitinfo";
+	var initUrl = "/CampusShop/shopadmin/getshopinitinfo";
 	// 注册店铺
-	var registerShopUrl = "/o2o/shopadmin/registershop";
+	var registerShopUrl = "/CampusShop/shopadmin/registershop";
 	// 根据shopid获取店铺详情，用于修改店铺信息
-	var shopInfoUrl = "/o2o/shopadmin/getshopbyid?shopId=" + shopId;
+	var shopInfoUrl = "/CampusShop/shopadmin/getshopbyid?shopId=" + shopId;
 	// 修改店铺
-	var modifyShopUrl = "/o2o/shopadmin/modifyshop";
+	var modifyShopUrl = "/CampusShop/shopadmin/modifyshop";
 
 	// 初始化
 	if (isEdit) {
@@ -125,7 +125,7 @@ $(function() {
 			formData.append('verifyCodeActual', verifyCodeActual);
 		}
 		$.ajax({
-			url:isEdit ? modifyShopUrl:registerShopUrl,
+			url : isEdit ? modifyShopUrl:registerShopUrl,
 			type : 'POST',
 			data : formData,
 			contentType : false,

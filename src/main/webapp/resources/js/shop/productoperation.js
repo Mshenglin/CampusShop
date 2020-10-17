@@ -7,9 +7,9 @@ $(function() {
 	// 标识符 productId非空则为true即编辑，否则为添加商品
 	var isEdit = productId ? true : false;
 	// 根据productId获取商品信息Url
-	var infoUrl = '/o2o/shopadmin/getproductbyid?productId=' + productId;
+	var infoUrl = '/CampusShop/shopadmin/getproductbyid?productId=' + productId;
 	// 获取当前店铺设定的商品类别列表Url
-	var categoryUrl = '/o2o/shopadmin/getproductcategorylist';
+	var categoryUrl = '/CampusShop/shopadmin/getproductcategorylist';
 	// 商品提交Url，通过标识符来判断是添加还是编辑操作
 	var productPostUrl = '';
 

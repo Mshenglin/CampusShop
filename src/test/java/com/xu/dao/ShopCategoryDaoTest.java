@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class ShopCategoryDaoTest extends BeseTest {
@@ -13,7 +14,13 @@ public class ShopCategoryDaoTest extends BeseTest {
     ShopCategoryDao shopCategoryDao;
     @Test
     public void queryShopCategoryTest(){
-        List<ShopCategory> shopCategories = shopCategoryDao.queryShopCategory(new ShopCategory());
-        System.out.println(shopCategories.toString());
+        ShopCategory shopCategory = new ShopCategory();
+        ShopCategory parent = new ShopCategory();
+        parent.setShopCategoryId(1L);
+        shopCategory.setParent(parent);
+        List<ShopCategory> shopCategories = shopCategoryDao.queryShopCategory(shopCategory);
+        for (ShopCategory object : shopCategories) {
+            System.out.println(object);
+        }
     }
 }

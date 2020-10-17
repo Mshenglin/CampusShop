@@ -43,6 +43,7 @@ public class ShopServiceImpl implements ShopService {
                 shop.setEnableStatus(ShopStateEnum.CHECK.getState());
                 //添加店铺信息,返回操作的影响数
                 int effectedNum = shopDao.insertShop(shop);
+                System.out.println("insertShop"+effectedNum);
                 //添加店铺失败
                 if (effectedNum <= 0) {
                     throw new ShopOperationException(ShopStateEnum.EDIT_ERROR.getStateInfo());
@@ -76,6 +77,7 @@ public class ShopServiceImpl implements ShopService {
         String dest = PathUtil.getShopImagePath(shop.getShopId());
         System.out.println(dest);
         String shopImgAddr = ImageUtil.generateThumbnail(shopImg, dest);
+        System.out.println(shopImgAddr);
         shop.setShopImg(shopImgAddr);
     }
 

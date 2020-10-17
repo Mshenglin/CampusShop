@@ -4,9 +4,9 @@ $(function() {
 	// var productCategoryURL =
 	// '/o2o/shopadmin/getproductcategorybyshopId?shopId=' + shopId;
 
-	var getProductCategoryURL = '/o2o/shopadmin/getproductcategorylist';
-	var addProductCategoryURL = '/o2o/shopadmin/addproductcategorys';
-	var deleteProductCategoryUrl = '/o2o/shopadmin/removeproductcategory';
+	var getProductCategoryURL = '/CampusShop/shopadmin/getproductcategorylist';
+	var addProductCategoryURL = '/CampusShop/shopadmin/addproductcategorys';
+	var deleteProductCategoryUrl = '/CampusShop/shopadmin/removeproductcategory';
 	// 调用getProductCategoryList，加载数据
 	getProductCategoryList();
 
