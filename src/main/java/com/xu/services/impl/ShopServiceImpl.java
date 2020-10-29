@@ -11,6 +11,7 @@ import com.xu.util.ImageUtil;
 import com.xu.util.PathUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -29,8 +30,47 @@ public class ShopServiceImpl implements ShopService {
     private ShopDao shopDao;
 
     @Override
+    public Shop getByShopId(long shopId) throws ShopOperationException {
+
+        return shopDao.queryByShopId(shopId);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public ShopExecution modifyShop(Shop shop, MultipartFile shopImg) throws ShopOperationException{
+        //空值判断
+        if(shop == null || shop.getShopId()==null){
+            return new ShopExecution(ShopStateEnum.NULL_SHOP_INFO);
+        }
+        try {
+        //1.判断是否需要处理图片
+        if(shopImg!=null){
+            //查找数据库中该shop的信息
+            Shop tempShop= shopDao.queryByShopId(shop.getShopId());
+            if (tempShop.getShopImg()!=null){
+            ImageUtil.deleteFileOrPath(tempShop.getShopImg());
+            }
+            //向数据库中添加新的路径
+            addImage(shop,shopImg);
+        }
+        //更新店铺信息
+        shop.setLastEditTime(new Date());
+        int effectedNum=shopDao.updateShop(shop);
+        if (effectedNum<=0){
+            return new ShopExecution(ShopStateEnum.EDIT_ERROR);
+        }
+        else {
+            return new ShopExecution(OperationStatusEnum.SUCCESS,shop);
+        }
+        }catch (Exception e){
+
+            throw  new ShopOperationException(ShopStateEnum.EDIT_ERROR.getStateInfo()+e.getMessage());
+        }
+    }
+
+    @Override
     @Transient
-    public ShopExecution addShop(Shop shop, CommonsMultipartFile shopImg) throws ShopOperationException {
+    public ShopExecution addShop(Shop shop, MultipartFile shopImg) throws ShopOperationException {
         //店铺的空值判断
         if (shop == null) {
             return new ShopExecution(ShopStateEnum.NULL_SHOP_INFO);
@@ -43,7 +83,6 @@ public class ShopServiceImpl implements ShopService {
                 shop.setEnableStatus(ShopStateEnum.CHECK.getState());
                 //添加店铺信息,返回操作的影响数
                 int effectedNum = shopDao.insertShop(shop);
-                System.out.println("insertShop"+effectedNum);
                 //添加店铺失败
                 if (effectedNum <= 0) {
                     throw new ShopOperationException(ShopStateEnum.EDIT_ERROR.getStateInfo());
@@ -73,11 +112,9 @@ public class ShopServiceImpl implements ShopService {
         }
     }
 
-    private void addImage(Shop shop, CommonsMultipartFile shopImg) {
+    private void addImage(Shop shop, MultipartFile shopImg) {
         String dest = PathUtil.getShopImagePath(shop.getShopId());
-        System.out.println(dest);
         String shopImgAddr = ImageUtil.generateThumbnail(shopImg, dest);
-        System.out.println(shopImgAddr);
         shop.setShopImg(shopImgAddr);
     }
 

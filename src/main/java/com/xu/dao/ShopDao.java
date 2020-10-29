@@ -7,6 +7,12 @@ import com.xu.entity.Shop;
  */
 public interface ShopDao {
     /**
+     *
+     * @param shopId
+     * @return
+     */
+    Shop queryByShopId(long shopId);
+    /**
      * 新增商铺
      * @param shop
      * @return 状态值

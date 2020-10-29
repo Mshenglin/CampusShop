@@ -35,7 +35,7 @@ public class ImageUtil {
      * @param targetAddr 图片存储路径
      * @return 文件的绝对路径
      */
- public static String generateThumbnail(CommonsMultipartFile thumbnail, String targetAddr) {
+ public static String generateThumbnail(MultipartFile thumbnail, String targetAddr) {
      //文件的随即名
      String realFileName = getRandomFileName();
      // 获取文件扩展名
@@ -88,7 +88,7 @@ public class ImageUtil {
      * @param thumbnail 用户传入的文件
      * @return
      */
-    private static String getFileExtension(CommonsMultipartFile thumbnail) {
+    private static String getFileExtension(MultipartFile thumbnail) {
         //客户端传入的原始名称
         String thumbnailName = thumbnail.getOriginalFilename();
         return  thumbnailName.substring(thumbnailName.lastIndexOf('.'));
@@ -106,4 +106,25 @@ public class ImageUtil {
         return  nowTime+randomNum;
     }
 
+    /**
+     * storePath是文件的路径还是目录的路径
+     * 如果storePath是文件路径则删除该文件
+     * 如果是目录的路径则删除该目录下的所有文件
+     * @param storePath
+     */
+    public static void deleteFileOrPath(String storePath){
+        File fileOrPath=new File(PathUtil.getImgBasePath()+storePath);
+        if(fileOrPath.exists()){
+            //如果目录存在
+            if(fileOrPath.isDirectory()){
+                //目录中是文件
+                File files[] =fileOrPath.listFiles();
+                //将文件删除
+                for (int i = 0; i < files.length; i++) {
+                    files[i].delete();
+                }
+            }
+            fileOrPath.delete();
+        }
+    }
 }

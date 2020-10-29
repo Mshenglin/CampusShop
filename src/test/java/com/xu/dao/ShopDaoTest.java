@@ -51,4 +51,11 @@ public class ShopDaoTest extends BeseTest {
         int effectNum = shopDao.updateShop(shop);
         System.out.println("effectNum：" + effectNum);
     }
+    @Test
+    public void testInsertShop(){
+        long shopId=1;
+        Shop shop=shopDao.queryByShopId(shopId);
+        System.out.println(shop);
+        System.out.println(shop.getArea().getAreaId());
+    }
 }

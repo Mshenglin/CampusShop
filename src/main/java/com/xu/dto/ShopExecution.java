@@ -1,6 +1,7 @@
 package com.xu.dto;
 
 import com.xu.entity.Shop;
+import com.xu.enums.OperationStatusEnum;
 import com.xu.enums.ShopStateEnum;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class ShopExecution {
      */
     private List<Shop> shopList;
 
-    public  ShopExecution() {
+    public  ShopExecution(OperationStatusEnum success, Shop shop) {
     }
 
     /**
