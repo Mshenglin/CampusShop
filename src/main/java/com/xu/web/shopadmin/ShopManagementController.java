@@ -13,7 +13,6 @@ import com.xu.services.ShopCategoryService;
 import com.xu.services.ShopService;
 import com.xu.util.HttpServletRequestUtil;
 import com.xu.util.VerificationCodeUtil;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -117,12 +116,18 @@ public class ShopManagementController {
         //2.注册店铺
         if(shop!=null&&shopImg!=null){
             //该处后续完善
-            PersonInfo owner=new PersonInfo();
-            owner.setUserId(1L);
+            PersonInfo owner = (PersonInfo) request.getSession().getAttribute("user");
             shop.setOwner(owner);
             ShopExecution shopExecution = shopService.addShop(shop, shopImg);
             if (shopExecution.getState()==ShopStateEnum.CHECK.getState()){
                 modelMap.put("success",true);
+                //该用户可以操作的店铺列
+                List<Shop> shopList= (List<Shop>) request.getSession().getAttribute("shopList");
+                if(shopList==null || shopList.size()==0){
+                    shopList=new ArrayList<>();
+                }
+                shopList.add(shopExecution.getShop());
+                request.getSession().setAttribute("shopList", shopList);
                 return modelMap;
             }
             else {
@@ -139,7 +144,7 @@ public class ShopManagementController {
         }
     }
     /**
-     * 注册店铺
+     * 修改店铺
      * @param request
      * @return
      */
@@ -185,12 +190,8 @@ public class ShopManagementController {
         }
         //2.修改店铺信息
         if(shop!=null&&shop.getShopId()!=null){
-            //该处后续完善
-            PersonInfo owner=new PersonInfo();
-            owner.setUserId(1L);
-            shop.setOwner(owner);
             ShopExecution shopExecution = shopService.addShop(shop, shopImg);
-            if (shopExecution.getState()==ShopStateEnum.CHECK.getState()){
+            if (shopExecution.getState()==ShopStateEnum.PASS.getState()){
                 modelMap.put("success",true);
                 return modelMap;
             }
