@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @Description: 请求工具类
  *
- * @author tyronchen
- * @date 2018年4月15日
  */
 
 public class HttpServletRequestUtil {

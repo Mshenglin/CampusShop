@@ -44,6 +44,7 @@ public class PersonInfo implements Serializable {
      */
     private Date lastEditTime;
 
+    private Long localAuthId;
     public Long getUserId() {
         return userId;
     }

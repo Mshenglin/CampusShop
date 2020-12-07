@@ -3,8 +3,6 @@ package com.xu.exceptions;
 /**
  * @Description: 商品类别操作异常
  *
- * @author: tyron
- * @date: 2018年9月22日
  */
 public class ProductCategoryOperationException extends RuntimeException {
 

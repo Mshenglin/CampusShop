@@ -13,5 +13,8 @@ public class AreaTest extends BeseTest {
     public void Test(){
         List<Area> areas = areaDao.queryArea();
         System.out.println(areas);
+        int a=1;
+        int b=1;
+        System.out.println();
     }
 }

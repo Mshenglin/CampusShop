@@ -1,23 +1,25 @@
 package com.xu.services.impl;
 
+
 import com.xu.dao.ShopDao;
 import com.xu.dto.ShopExecution;
-import com.xu.enums.OperationStatusEnum;
-import com.xu.exceptions.ShopOperationException;
 import com.xu.entity.Shop;
+import com.xu.enums.OperationStatusEnum;
 import com.xu.enums.ShopStateEnum;
+import com.xu.exceptions.ShopOperationException;
 import com.xu.services.ShopService;
 import com.xu.util.ImageUtil;
+import com.xu.util.PageCalculator;
 import com.xu.util.PathUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.beans.Transient;
-import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 店铺操作接口实现类
@@ -110,6 +112,26 @@ public class ShopServiceImpl implements ShopService {
             }
             return new ShopExecution(ShopStateEnum.CHECK, shop);
         }
+    }
+
+    @Override
+    public ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize) throws ShopOperationException {
+        // 前台页面插入的pageIndex（第几页）， 而dao层是使用 rowIndex （第几行） ，所以需要转换一下
+        int rowIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
+        List<Shop> shopList = new ArrayList<Shop>();
+        ShopExecution se = new ShopExecution();
+        // 查询带有分页的shopList
+        shopList = shopDao.selectShopList(shopCondition, rowIndex, pageSize);
+        // 查询符合条件的shop总数
+        int count = shopDao.selectShopCount(shopCondition);
+        // 将shopList和 count设置到se中，返回给控制层
+        if (shopList != null) {
+            se.setShopList(shopList);
+            se.setCount(count);
+        } else {
+            se.setState(ShopStateEnum.EDIT_ERROR.getState());
+        }
+        return se;
     }
 
     private void addImage(Shop shop, MultipartFile shopImg) {

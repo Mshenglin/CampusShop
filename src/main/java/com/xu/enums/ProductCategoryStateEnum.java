@@ -6,8 +6,6 @@ package com.xu.enums;
 /**
  * @Description: 商品类别状态枚举
  *
- * @author: tyron
- * @date: 2018年9月22日
  */
 
 public enum ProductCategoryStateEnum {

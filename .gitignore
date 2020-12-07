@@ -4,6 +4,7 @@ target/
 .idea/
 *.iml
 out/
+log/
 ### Java template
 *.class
 # Package Files #

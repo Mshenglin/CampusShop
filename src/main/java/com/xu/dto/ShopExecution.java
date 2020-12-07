@@ -59,6 +59,10 @@ public class ShopExecution {
         this.shop = shop;
     }
 
+    public ShopExecution() {
+
+    }
+
     public int getState() {
         return state;
     }

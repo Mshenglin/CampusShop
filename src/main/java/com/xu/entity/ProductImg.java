@@ -15,11 +15,11 @@ public class ProductImg {
 	/**
 	 *详情图片地址
 	 */
-	private String imgAddr;
+	private String piImgAddr;
 	/**
 	 *详情图片描述
 	 */
-	private String imgDesc;
+	private String piImgDesc;
 	/**
 	 *详情图片显示权重
 	 */
@@ -41,20 +41,20 @@ public class ProductImg {
 		this.productImgId = productImgId;
 	}
 
-	public String getImgAddr() {
-		return imgAddr;
+	public String getPiImgAddr() {
+		return piImgAddr;
 	}
 
-	public void setImgAddr(String imgAddr) {
-		this.imgAddr = imgAddr;
+	public void setPiImgAddr(String piImgAddr) {
+		this.piImgAddr = piImgAddr;
 	}
 
-	public String getImgDesc() {
-		return imgDesc;
+	public String getPiImgDesc() {
+		return piImgDesc;
 	}
 
-	public void setImgDesc(String imgDesc) {
-		this.imgDesc = imgDesc;
+	public void setPiImgDesc(String piImgDesc) {
+		this.piImgDesc = piImgDesc;
 	}
 
 	public Integer getPriority() {
