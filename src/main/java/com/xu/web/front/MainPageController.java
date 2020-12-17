@@ -1,15 +1,10 @@
 package com.xu.web.front;
 
-import com.tyron.o2o.entity.HeadLine;
-import com.tyron.o2o.entity.ShopCategory;
-import com.tyron.o2o.enums.EnableStatusEnum;
-import com.tyron.o2o.service.HeadLineService;
-import com.tyron.o2o.service.ShopCategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.xu.entity.HeadLine;
+import com.xu.entity.ShopCategory;
+import com.xu.enums.EnableStatusEnum;
+import com.xu.services.ShopCategoryService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,8 +14,7 @@ import java.util.Map;
 /**
  * @Description: 首页控制层
  *
- * @author: tyron
- * @date: 2018年11月26日
+
  */
 
 @Controller
